@@ -1,22 +1,17 @@
-import { Outlet, createRootRouteWithContext } from '@tanstack/react-router'
+import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { CollapsibleHeader } from '../components/collapsible-header'
-import type { QueryClient } from '@tanstack/react-query'
+import { Sidebar } from '../components/sidebar'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
 
-interface Context {
-  queryClient: QueryClient
-}
-
-export const Route = createRootRouteWithContext<Context>()({
+export const Route = createRootRoute({
   component: () => (
-    <div className="min-h-screen flex">
-      <aside className="w-80 border-r border-gray-700/50 p-6 bg-[conic-gradient(from_90deg_at_-10%_100%,#2b303b_0deg,#2b303b_90deg,#16181d_1turn)]">
-        <CollapsibleHeader />
+    <div className="min-h-screen flex flex-col sm:flex-row">
+      <aside className="w-full sm:w-64 md:w-80 lg:w-96 xl:w-md p-4 sm:p-5 md:p-6 lg:p-8 bg-[conic-gradient(from_90deg_at_-10%_100%,#2b303b_0deg,#2b303b_90deg,#16181d_1turn)] overflow-y-auto">
+        <Sidebar />
       </aside>
       
-      <main className="flex-1">
+      <main className="flex-1 min-w-0">
         <Outlet />
       </main>
       
